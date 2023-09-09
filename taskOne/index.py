@@ -16,8 +16,8 @@ def api_route():
         "current_day": get_weekday(d),
         "utc_time": d.strftime(date_format),
         "track": "backend",
-        "github_file_url": "file_url",
-        "github_repo_url": "repo_url",
+        "github_file_url": "https://github.com/Tonyeseh/hngx_projects/blob/main/taskOne/app.py",
+        "github_repo_url": "https://github.com/Tonyeseh/hngx_projects",
         "status_code": 200
     }), 200
 
