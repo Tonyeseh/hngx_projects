@@ -9,9 +9,11 @@ app = Flask(__name__)
 @app.route('/api')
 def api_route():
     """defines the /api route"""
+    name = request.args.get('slack_name')
+    track = request.args.get('track')
     date_format = "%Y-%m-%dT%H:%M:%SZ"
     d = datetime.now(timezone.utc)
-    return jsonify({
+    response =  jsonify({
         "slack_name": "esehtony",
         "current_day": get_weekday(d),
         "utc_time": d.strftime(date_format),
@@ -19,8 +21,8 @@ def api_route():
         "github_file_url": "https://github.com/Tonyeseh/hngx_projects/blob/main/taskOne/app.py",
         "github_repo_url": "https://github.com/Tonyeseh/hngx_projects",
         "status_code": 200
-    }), 200
-
+    })
+    response.headers['Content_Type'] = "application/json"
 def get_weekday(date):
     """returns the weekday in string"""
     weekday = date.weekday()
