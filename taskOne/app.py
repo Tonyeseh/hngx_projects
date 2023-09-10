@@ -23,6 +23,8 @@ def api_route():
         "status_code": 200
     })
     response.headers['Content_Type'] = "application/json"
+    return response, 200
+
 def get_weekday(date):
     """returns the weekday in string"""
     weekday = date.weekday()
