@@ -7,3 +7,4 @@ Jinja2==3
 MarkupSafe==2
 werkzeug==2
 zipp==3
+gunicorn==19
