@@ -13,15 +13,21 @@ def api_route():
     track = request.args.get('track')
     date_format = "%Y-%m-%dT%H:%M:%SZ"
     d = datetime.now(timezone.utc)
-    response =  jsonify({
-        "slack_name": name,
+    default_response = {
         "current_day": get_weekday(d),
         "utc_time": d.strftime(date_format),
-        "track": track,
         "github_file_url": "https://github.com/Tonyeseh/hngx_projects/blob/main/taskOne/app.py",
         "github_repo_url": "https://github.com/Tonyeseh/hngx_projects",
         "status_code": 200
-    })
+    }
+
+    if name:
+        default_response['slack_name'] = name
+
+    if track:
+        default_response['track'] = track
+
+    response =  jsonify(default_response)
     response.headers['Content_Type'] = "application/json"
     return response, 200
 
