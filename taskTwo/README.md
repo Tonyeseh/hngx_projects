@@ -1,17 +1,6 @@
 # REST API simeple application
 
-This is a bare-bones example of a Sinatra application providing a REST
-API to a DataMapper-backed model.
-
-The entire application is contained within the `app.rb` file.
-
-`config.ru` is a minimal Rack configuration for unicorn.
-
-`run-tests.sh` runs a simplistic test and generates the API
-documentation below.
-
-It uses `run-curl-tests.rb` which runs each command defined in
-`commands.yml`.
+Simple RESTAPI application
 
 ## Install
 
@@ -25,7 +14,7 @@ It uses `run-curl-tests.rb` which runs each command defined in
 
 The REST API to the example app is described below.
 
-## Create a new Thing
+## Create a new Person
 
 ### Request
     HTTP/1.1 201 Created
@@ -33,10 +22,10 @@ The REST API to the example app is described below.
     Status: 201 Created
     Connection: close
     Content-Type: application/json
-    Location: /thing/2
+    Location: /api/
     Content-Length: 35
 
-`POST /thing/`
+`POST /api/`
 
     curl -H 'Accept: application/json' -d 'name=Foo&email=new' http://localhost:5000/api
 
@@ -44,13 +33,13 @@ The REST API to the example app is described below.
 
     {"id":32557aec-e063-4342-ada0-b02b2022c245,"name":"Foo","email":"new"}
 
-## Get a specific Thing
+## Get a specific Person
 
 ### Request
 
-`GET /thing/id`
+`GET /api/id`
 
-    curl -H 'Accept: application/json' http://localhost:7000/thing/32557aec-e063-4342-ada0-b02b2022c245
+    curl -H 'Accept: application/json' http://localhost:5000/api/32557aec-e063-4342-ada0-b02b2022c245
 
 ### Response
 
@@ -63,13 +52,13 @@ The REST API to the example app is described below.
 
     {"id":32557aec-e063-4342-ada0-b02b2022c245,"name":"Foo","email":"new"}
 
-## Get a non-existent Thing
+## Get a non-existent Person
 
 ### Request
 
-`GET /thing/id`
+`GET /api/id`
 
-    curl -i -H 'Accept: application/json' http://localhost:7000/thing/9999
+    curl -i -H 'Accept: application/json' http://localhost:5000/api/9999
 
 ### Response
 
@@ -82,13 +71,13 @@ The REST API to the example app is described below.
 
     {"message":"Invalid ID","status":"error"}
 
-## Create another new Thing
+## Create another new Person
 
 ### Request
 
-`POST /thing/`
+`POST /api/`
 
-    curl -i -H 'Accept: application/json' -d 'name=Bar&junk=rubbish' http://localhost:7000/thing
+    curl -i -H 'Accept: application/json' -d 'name=Bar&junk=rubbish' http://localhost:5000/api
 
 ### Response
 
@@ -97,19 +86,19 @@ The REST API to the example app is described below.
     Status: 201 Created
     Connection: close
     Content-Type: application/json
-    Location: /thing/2
+    Location: /api
     Content-Length: 35
 
     {"id":6a9e69b9-c016-41d4-b031-2e1d8e27400d,"name":"Bar","email":null}
 
 
-## Change a Thing's state
+## Change a Person's state
 
 ### Request
 
-`PUT /thing/:id/status/changed`
+`PUT /api`
 
-    curl -i -H 'Accept: application/json' -X PUT http://localhost:7000/api/6a9e69b9-c016-41d4-b031-2e1d8e27400d -d 'name=Bar&email=rubbish'
+    curl -i -H 'Accept: application/json' -X PUT http://localhost:5000/api/6a9e69b9-c016-41d4-b031-2e1d8e27400d -d 'name=Bar&email=rubbish'
 
 ### Response
 
