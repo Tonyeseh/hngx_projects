@@ -1,11 +1,9 @@
 import models
-from dotenv import load_dotenv
 from models.user import Base, User
 from os import getenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-load_dotenv()
 
 class DBStorage:
     """interacts with POSTGRES database"""
