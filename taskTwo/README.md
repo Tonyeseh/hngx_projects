@@ -92,7 +92,7 @@ The REST API to the example app is described below.
     {"id":6a9e69b9-c016-41d4-b031-2e1d8e27400d,"name":"Bar","email":null}
 
 
-## Change a Person's state
+## Change a Person's email
 
 ### Request
 
@@ -110,3 +110,23 @@ The REST API to the example app is described below.
     Content-Length: 40
 
     {"id":6a9e69b9-c016-41d4-b031-2e1d8e27400d,"name":"Bar","email":"rubbish"}
+
+
+## Delete Person
+
+### Request
+
+`DELETE /api`
+
+    curl -i -H 'Accept: application/json' -X PUT http://localhost:5000/api/6a9e69b9-c016-41d4-b031-2e1d8e27400d -d 'name=Bar&email=rubbish'
+
+### Response
+
+    HTTP/1.1 200 OK
+    Date: Thu, 24 Feb 2023 12:36:31 GMT
+    Status: 200 OK
+    Connection: close
+    Content-Type: application/json
+    Content-Length: 40
+
+    {}
