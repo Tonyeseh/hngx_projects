@@ -26,7 +26,11 @@ class DBStorage:
 
     def all(self):
         new_dict = {}
-        objs = self.__session.query(User).all()
+        try:
+            objs = self.__session.query(User).all()
+        except:
+            self.reload()
+            objs = self.__session.query(User).all()
         for obj in objs:
             key = obj.id
             new_dict[key] = obj
@@ -42,11 +46,19 @@ class DBStorage:
 
     def save(self):
         """commit all changes of the cirrect database seesion"""
-        self.__session.commit()
+        try:
+            self.__session.commit()
+        except:
+            self.reload()
+            self.__session.commit()
 
     def delete(self, obj):
         """delete from the current database session obj"""
-        self.__session.delete(obj)
+        try:
+            self.__session.delete(obj)
+        except:
+            self.reload()
+            self.__session.delete(obj)
 
     def reload(self):
         """reloads data from the database"""
