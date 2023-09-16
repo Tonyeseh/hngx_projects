@@ -27,14 +27,14 @@ def get_user(id):
         return {
             "status": "error",
             "message": "invalid ID"
-        }, 400
+        }, 404
     if request.method == "PUT":
         result = storage.get(id)
         if not result:
             return {
             "status": "error",
             "message": "Invalid ID"
-        }, 400
+        }, 404
         data = request.get_json()
         if data.get('name', None):
             result.name = data.get('name')
@@ -49,7 +49,7 @@ def get_user(id):
             return {
             "status": "error",
             "message": "Invalid ID"
-        }, 400
+        }, 404
         storage.delete(result)
         storage.save()
         return jsonify({})
